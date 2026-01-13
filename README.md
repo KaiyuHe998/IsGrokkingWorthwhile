@@ -1,8 +1,8 @@
 # Is Grokking WorthWhile? Functional Analysis and Transferability of Generalization Circuits in Transformers
 
-This repo contains several research codebases. The workflow below follows the "IsGrokkingWorthwhile" pipeline end-to-end:
+This repo contains several research codebases. Follow the following steps to reproduce our results in paper.
 1) install packages,
-2) generate synthetic data and train a baseline transformer,
+2) generate synthetic data and train a traditional transformer,
 3) preprocess data for TRM and run TRM pretrain/finetune,
 4) visualize results.
 
