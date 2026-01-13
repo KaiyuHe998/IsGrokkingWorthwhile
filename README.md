@@ -11,7 +11,7 @@ This repo contains several research codebases. The workflow below follows the "I
 Recommended (Conda explicit environment):
 
 ```bash
-cd  IsGrokkingWorthwhile/Grokking_analysis
+cd  IsGrokkingWorthwhile
 conda create -n explainableLLM_repro --file conda-explicit.txt
 conda activate explainableLLM_repro
 python -m pip install -r requirements.txt
@@ -26,8 +26,8 @@ The notebook saves json files under `IsGrokkingWorthwhile/Grokking_analysis/data
 
 Then train the baseline transformer (command from the last markdown cell of the notebook):
 
+Under Grokking_analysis folder
 ```bash
-cd IsGrokkingWorthwhile/Grokking_analysis && \
   PYTHONPATH="$PWD/simpletransformers:${PYTHONPATH}" PYTHONNOUSERSITE=1 CUDA_VISIBLE_DEVICES=0 \
   python main.py \
     --data_dir data/composition.2000.200.18.0_factaug_h1ratio0.5_h1k9_h2ratio0.5_h2k9 \
