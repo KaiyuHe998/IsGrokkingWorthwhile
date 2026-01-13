@@ -12,8 +12,8 @@ Recommended (Conda explicit environment):
 
 ```bash
 cd  IsGrokkingWorthwhile
-conda create -n explainableLLM_repro --file conda-explicit.txt
-conda activate explainableLLM_repro
+conda create -n <Your name here> --file conda-explicit.txt
+conda activate <Your name here>
 python -m pip install -r requirements.txt
 ```
 
@@ -64,7 +64,7 @@ This produces TRM-ready datasets under `IsGrokkingWorthwhile/TRM_model/data/<dat
 From `IsGrokkingWorthwhile/TRM_model/` (command copied from `preprocess_training_data.ipynb`):
 
 ```bash
-run_name="pretrain_grok_composition" && CUDA_VISIBLE_DEVICES=0 torchrun --nproc_per_node=1 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain_grok_evaluate_ver_0_1.py   arch=trm   data_paths="[data/composition.2000.200.18.0_factaug_h1ratio0.5_h1k9_h2ratio0.5_h2k9]"   evaluators="[]"   epochs=1100   eval_interval=5   lr=4e-5   puzzle_emb_lr=1e-4   weight_decay=1.0   puzzle_emb_weight_decay=1.0   arch.mlp_t=True   arch.pos_encodings=None   arch.L_layers=2   arch.H_cycles=2   arch.L_cycles=6 arch.halt_max_steps=1 arch.hidden_size=1536 +run_name=${run_name}  ema=True   global_batch_size=512  +max_inference_steps=1 checkpoint_every_eval=True   +format="maintain_prefix" +causal=False +post_fix="anything_here_you_like"
+run_name="pretrain_grok_composition" && CUDA_VISIBLE_DEVICES=0 torchrun --nproc_per_node=1 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain_grok_evaluate_ver_0_1.py   arch=trm   data_paths="[data/composition.2000.200.18.0_factaug_h1ratio0.5_h1k9_h2ratio0.5_h2k9]"   evaluators="[]"   epochs=1100   eval_interval=5   lr=4e-5   puzzle_emb_lr=1e-4   weight_decay=1.0   puzzle_emb_weight_decay=1.0   arch.mlp_t=True   arch.pos_encodings=None   arch.L_layers=2   arch.H_cycles=2   arch.L_cycles=6 arch.halt_max_steps=1 arch.hidden_size=1536 +run_name=${run_name}  ema=True   global_batch_size=512  +max_inference_steps=1 checkpoint_every_eval=True   +format="maintain_prefix" +causal=False +post_fix="your_post_fix_here"
 ```
 
 ### 3.3 Finetune from a checkpoint (new dataset)
@@ -72,7 +72,7 @@ run_name="pretrain_grok_composition" && CUDA_VISIBLE_DEVICES=0 torchrun --nproc_
 From `IsGrokkingWorthwhile/TRM_model/` (command copied from `preprocess_training_data.ipynb`):
 
 ```bash
-run_name="TRM_finetune" && LOAD_CKPT={Your TRM checkpoint path here} && CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain_grok_evaluate_ver_0_1.py arch=trm data_paths="[{Your finetune datapath here}]" evaluators="[]" +load_checkpoint="${LOAD_CKPT}" epochs=20000 eval_interval=50 lr=2e-5 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 arch.mlp_t=True arch.pos_encodings=None arch.L_layers=2 arch.H_cycles=2 arch.L_cycles=6 arch.halt_max_steps=1 arch.hidden_size=1536 ema=True global_batch_size=512 +max_inference_steps=1 checkpoint_every_eval=False +causal=False +run_name="${run_name}" +post_fix="2000.200.18.0_no_aug_finetuning"
+run_name="TRM_finetune" && LOAD_CKPT={Your TRM checkpoint path here} && CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain_grok_evaluate_ver_0_1.py arch=trm data_paths="[{Your finetune datapath here}]" evaluators="[]" +load_checkpoint="${LOAD_CKPT}" epochs=20000 eval_interval=50 lr=2e-5 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 arch.mlp_t=True arch.pos_encodings=None arch.L_layers=2 arch.H_cycles=2 arch.L_cycles=6 arch.halt_max_steps=1 arch.hidden_size=1536 ema=True global_batch_size=512 +max_inference_steps=1 checkpoint_every_eval=False +causal=False +run_name="${run_name}" +post_fix="your_post_fix_here"
 ```
 
 ## 4) Visualize
