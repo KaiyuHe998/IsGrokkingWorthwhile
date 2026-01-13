@@ -1,4 +1,4 @@
-# TRM_LCM
+# Is Grokking WorthWhile? Functional Analysis and Transferability of Generalization Circuits in Transformers
 
 This repo contains several research codebases. The workflow below follows the "IsGrokkingWorthwhile" pipeline end-to-end:
 1) install packages,
