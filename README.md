@@ -77,5 +77,4 @@ run_name="TRM_finetune" && LOAD_CKPT={Your TRM checkpoint path here} && CUDA_VIS
 
 ## 4) Visualize
 
-- Baseline transformer / dataset analysis: `IsGrokkingWorthwhile/Grokking_analysis/Visualization Figures.ipynb`
-- TRM evaluation artifacts are saved under the `checkpoint_path` you set (e.g., `eval_results/...`).
+- Pretrain and finetune analysis: `IsGrokkingWorthwhile/Grokking_analysis/Visualization Figures.ipynb`
