@@ -1,0 +1,37 @@
+# Decoder-Only Transformer Baseline配置
+# 与TRM保持相同的训练超参数，仅模型结构不同
+
+# 模型架构 (目标: ~7M参数，与TRM相同)
+# TRM有效深度: H_cycles(3) × [L_cycles(6) + 1] × L_layers(2) = 42层
+# 训练深度: 最后1个H循环有梯度 = 7 × 2 = 14层
+# 实际参数量: 6.95M (误差-0.8%)
+hidden_size: 176
+num_layers: 14     # 匹配TRM的有效训练深度
+num_attention_heads: 8
+intermediate_size: 704  # 4 * hidden_size
+
+# 数据
+data_paths:
+  - data/sudoku-extreme-1k-aug-1000
+data_paths_test: []
+
+# 训练超参数 (与TRM配置保持一致)
+global_batch_size: 4096
+epochs: 100000
+eval_interval: 5000
+
+# 学习率
+lr: 0.0001
+lr_min_ratio: 1.0
+lr_warmup_steps: 2000
+
+# 优化器
+weight_decay: 1.0
+beta1: 0.9
+beta2: 0.95
+
+# 其他
+seed: 0
+project_name: Sudoku-extreme-1k-aug-1000-DecoderOnly
+run_name: decoder_only_176h_14l_7.0M
+checkpoint_path: checkpoints/Sudoku-extreme-1k-aug-1000-DecoderOnly/decoder_only_176h_14l_7.0M
