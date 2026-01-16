@@ -1,6 +1,6 @@
 # Is Grokking WorthWhile? Functional Analysis and Transferability of Generalization Circuits in Transformers
 
-This repo contains several research codebases. Follow the following steps to reproduce our results in \href{paper}{https://arxiv.org/abs/2601.09049}. 
+This repo contains several research codebases. Follow the following steps to reproduce our results in [paper](https://arxiv.org/abs/2601.09049). 
 1) install packages,
 2) generate synthetic data and train a traditional transformer,
 3) preprocess data for TRM and run TRM pretrain/finetune,
